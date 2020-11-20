@@ -1,3 +1,5 @@
+// dummy data for comparison testing
+
 const data = [
 {
 id: "852e8426-89c5-4cfa-a3bb-994b77d9114e",

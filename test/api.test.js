@@ -1,21 +1,18 @@
 const data = require('./dummyData')
-
 const categoryFunction = require('../src/functions/categoryFunction')
 const cashflowFunction = require('../src/functions/cashflowFunction')
 
-
+// function calls for category tests
 const categoryArray = categoryFunction.getCategories(data);
 const arrayOfAppearances = categoryFunction.timesCategoryAppears(categoryArray, data);
 const categoryObjects = categoryFunction.summariseExpenses(arrayOfAppearances);
 const finalCall = categoryFunction.nameObject(categoryObjects, categoryArray);
 
-
+// function calls for cash flow tests
 const dates = cashflowFunction.getDates(data);
 const arrayOfDateAppearances = cashflowFunction.timesDateAppears(dates, data);
 const dateObjects = cashflowFunction.summariseSpendingByDays(arrayOfAppearances);
 const formattedDatesArray = cashflowFunction.formatDates(dates);
-
-
 
 // These tests are for the category functions responsible for manipulating the data on
 // insights/categories
@@ -49,7 +46,7 @@ test('Final result should be labeled', () => {
 });
 
 // These tests are for the cashflow functions responsible for manipulating the data on
-// insights/categories
+// insights/cashflow
 
 test('Data should return an array of dates', () => {
   const result = dates
@@ -78,44 +75,3 @@ test('Expenses by date should be formatted correctly', () => {
     throw new Error('The expenses are not correcttly formatted')
   }
 })
-
-
-
-
-
-
-// const chai = require('chai');
-// const rp = require('request-promise');
-
-// chai.should();
-
-// async function request(path) {
-//   return rp({
-//     url: `http://localhost:3000/insights/${path}`,
-//     method: 'GET',
-//     json: true,
-//     resolveWithFullResponse: true, // promise resolves with full response not just body.
-//     simple: false   // ensures promise resolves even if statusCode is not 200 series.
-//   });
-// }
-
-// describe('Insights Service', () => {
-//   describe('/categories', () => {
-//     context('it is yet to be implemented', () => {
-//       it('should return 200', async () => {
-//         const response = await request('/categories');
-//         response.statusCode.should.equal(200);
-//       });
-//     });
-//   });
-
-
-//   describe('/cashflow', () => {
-//     context('it is yet to be implemented', () => {
-//       it('should return 200', async () => {
-//         const response = await request('/cashflow');
-//         response.statusCode.should.equal(200);
-//       });
-//     });
-//   });
-// });

@@ -1,5 +1,4 @@
 const getDates = (data) => {
-
   const dateArray = [];
   data.forEach((expense) => {
     if (!dateArray.includes(expense.paymentDate)) {
@@ -9,15 +8,13 @@ const getDates = (data) => {
   return(dateArray)
 };
 
-
 const timesDateAppears = (array, data) => {
   const dateArray = [];
   array.forEach((paymentDate) => {
-  dateArray.push(data.filter(expense => expense.paymentDate === paymentDate))
+    dateArray.push(data.filter(expense => expense.paymentDate === paymentDate))
   });
   return dateArray
 };
-
 
 const summariseSpendingByDays = (array) => {
   const finalArray = [];
@@ -25,7 +22,7 @@ const summariseSpendingByDays = (array) => {
     let totalValue = 0
     innerArray.forEach((item) => {
       totalValue += item.amount
-      })
+    })
       finalArray.push(item = {
         totalNumber: innerArray.length,
         totalValue: totalValue,
@@ -34,7 +31,6 @@ const summariseSpendingByDays = (array) => {
     });
   return(finalArray)
 };
-
 
 const formatDates = (dates) => {
   const formattedDates = [];
@@ -48,9 +44,9 @@ const nameDates = (objects, datesArray) => {
   const cashflowArray = [];
     for (let i = 0; i <= datesArray.length - 1; i++) {
       cashflowArray.push(`{ "${datesArray[i]}": { "totalNumber": ${objects[i].totalNumber}, "totalValue": ${objects[i].totalValue}, "averageValue": ${objects[i].averageValue} }`)
-    }
+    };
   return cashflowArray;
-}
+};
 
 module.exports = {
   getDates: getDates,

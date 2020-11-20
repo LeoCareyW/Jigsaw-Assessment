@@ -9,7 +9,6 @@ const getCategories = (data) => {
   return categoryArray;
 };
 
-
 const timesCategoryAppears = (array, data) => {
   const categoryArray = [];
   array.forEach((category) => {
@@ -17,7 +16,6 @@ const timesCategoryAppears = (array, data) => {
   });
    return categoryArray;
 };
-
 
 const summariseExpenses = (array) => {
   const finalArray = [];
@@ -35,7 +33,6 @@ const summariseExpenses = (array) => {
   return(finalArray);
   };
 
-
 const nameObject = (objects, categoryArray) => {
   const categoriesArray = [];
   for (let i = 0; i <= categoryArray.length - 1; i++) {
@@ -43,7 +40,6 @@ const nameObject = (objects, categoryArray) => {
   };
   return categoriesArray;
 };
-
 
 module.exports = {
   getCategories: getCategories,

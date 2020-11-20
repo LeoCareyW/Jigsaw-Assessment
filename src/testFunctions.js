@@ -68,7 +68,6 @@ const data = [
 const getCategories = (data) => {
 
   const categoryArray = []
-
   data.forEach((expense) => {
     if (!categoryArray.includes(expense.category)) {
       categoryArray.push(expense.category)
@@ -85,25 +84,45 @@ const timesCategoryAppears = (array, data) => {
   const categoryArray = []
   array.forEach((category) => {
   categoryArray.push(data.filter(expense => expense.category === category))
-    console.log(categoryArray)
   })
+   return categoryArray
 }
 
+const arrayThis = timesCategoryAppears(categoryArray, data);
+
+const summariseExpenses = (array) => {
+  const finalArray = []
+  array.forEach((innerArray) => {
+    let totalValue = 0
+    innerArray.forEach((item) => {
+      totalValue += item.amount
+      })
+     finalArray.push(item = {
+        totalNumber: innerArray.length,
+        totalValue: totalValue,
+        averageValue: (totalValue / innerArray.length)
+      })
+    })
+  return(finalArray)
+  }
 
 
-//   const allCategories = []
-//   array.forEach((item) => {
-//     const singularCategory = []
-//     const categoryInData = data.filter(expense => expense.category === item)
-//     singularCategory.push(categoryInData)
-//     allCategories.push(singularCategory)
-//     console.log(allCategories)
-//   })
-// }
+const objects = summariseExpenses(arrayThis);
+
+
+
+
+
+const nameObject = (objects, categoryArray) => {
+  for (let i = 0; i <= categoryArray.length - 1; i++) {
+    console.log(`${categoryArray[i]} = TotalNumber: ${objects[i].totalNumber}, totalValue: ${objects[i].totalValue}, averageValue: ${objects[i].averageValue}`)
+  }
+}
 
 getCategories(data);
 timesCategoryAppears(categoryArray, data);
-
+summariseExpenses(arrayThis)
+nameObject(objects, categoryArray);
 
 
 

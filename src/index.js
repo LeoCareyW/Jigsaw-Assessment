@@ -1,29 +1,19 @@
 const express = require('express');
 const app = express();
-const getTransactions = require('./routers/fetchData')
 const fetch = require('node-fetch');
-// const insightsRouter = require('./routers/insights');
-const categoryFunctions = require('./categoryFunction.js')
-const cashFlowFunctions = require('./cashflowFunction.js')
-//-----------
-// const router = express.Router();
 
-app.get('', (req, res) => {
-  res.send('Hello Budget App')
-});
+const categoryFunctions = require('../src/functions/categoryFunction.js')
+const cashFlowFunctions = require('../src/functions/cashflowFunction.js')
+
+// I moved all index.js data into this file so that all server information is in one file
+//and reduce folder clutter
 
 app.listen(3000, () => {
   console.log('Insights server running')
 });
 
-app.get('/categories', (req, res) => {
-  res.send('Categories file')
-});
 
-app.get('/cashflow', (req, res) => {
-  res.send('Categories file')
-});
-
+// Three different server responses and urls
 
 app.get('/insights', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
@@ -38,9 +28,9 @@ app.get('/insights/categories', (req, res, next) => {
     .then(res => res.json())
     .then(data => {
       const categoryArray = categoryFunctions.getCategories(data);
-      const arrayThis = categoryFunctions.timesCategoryAppears(categoryArray, data);
-      const objects = categoryFunctions.summariseExpenses(arrayThis);
-      res.send(categoryFunctions.nameObject(objects, categoryArray));
+      const arrayOfAppearances = categoryFunctions.timesCategoryAppears(categoryArray, data);
+      const objects = categoryFunctions.summariseExpenses(arrayOfAppearances);
+      res.json(categoryFunctions.nameObject(objects, categoryArray));
     })
 })
 
@@ -49,10 +39,10 @@ app.get('/insights/cashflow', (req, res, next) => {
     .then(res => res.json())
     .then(data => {
       const dates = cashFlowFunctions.getDates(data);
-      const arrayThis = cashFlowFunctions.timesDateAppears(dates, data);
-      const objects = cashFlowFunctions.summariseSpendingByDays(arrayThis);
+      const arrayOfAppearances = cashFlowFunctions.timesDateAppears(dates, data);
+      const objects = cashFlowFunctions.summariseSpendingByDays(arrayOfAppearances);
       const formattedDatesArray = cashFlowFunctions.formatDates(dates);
-      res.send(cashFlowFunctions.nameDates(objects, formattedDatesArray));
+      res.json(cashFlowFunctions.nameDates(objects, formattedDatesArray));
     })
 })
 

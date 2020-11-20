@@ -3,8 +3,8 @@ const app = express();
 const getTransactions = require('./routers/fetchData')
 const fetch = require('node-fetch');
 // const insightsRouter = require('./routers/insights');
-const axios = require('axios');
-app.set('view engine', 'ejs')
+const categoryFunctions = require('./categoryFunction.js')
+const cashFlowFunctions = require('./cashflowFunction.js')
 //-----------
 // const router = express.Router();
 
@@ -37,9 +37,10 @@ app.get('/insights/categories', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then(res => res.json())
     .then(data => {
-
-      res.send(data)
-
+      const categoryArray = categoryFunctions.getCategories(data);
+      const arrayThis = categoryFunctions.timesCategoryAppears(categoryArray, data);
+      const objects = categoryFunctions.summariseExpenses(arrayThis);
+      res.send(categoryFunctions.nameObject(objects, categoryArray));
     })
 })
 
@@ -47,32 +48,13 @@ app.get('/insights/cashflow', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then(res => res.json())
     .then(data => {
-
-      res.send(data)
-
+      const dates = cashFlowFunctions.getDates(data);
+      const arrayThis = cashFlowFunctions.timesDateAppears(dates, data);
+      const objects = cashFlowFunctions.summariseSpendingByDays(arrayThis);
+      const formattedDatesArray = cashFlowFunctions.formatDates(dates);
+      res.send(cashFlowFunctions.nameDates(objects, formattedDatesArray));
     })
 })
-
-// const fetch = require('node-fetch');
-
-// const getTransactions = async () => {
-//   const response = await fetch('http://54.154.227.172:3000/transactions', {})
-//     if (response.status === 200) {
-//       const data = await response.json()
-//       console.log(data)
-//     } else {
-//     throw new Error('Unable to fetch transactions')
-//   }
-// }
-
-// module.exports = getTransactions
-
-
-
-
-
-//---------
-// app.use('/insights', insightsRouter)
 
 // handle errors
 app.use((error, _, res, next) => {

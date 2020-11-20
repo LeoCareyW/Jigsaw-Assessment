@@ -1,6 +1,6 @@
 ------------------------
 
-Hi Team,
+**Hi Team**,
 
 Thanks for the challenge today, it was tricky, and I didn't manage to complete it to the level
 that I would have liked, however I was able to get a satisfactory result. I have detailed the project
@@ -89,5 +89,6 @@ To test run 'npm test'
 
 ------------------------
 
+Thanks,
 
 Leo Carey-Williams

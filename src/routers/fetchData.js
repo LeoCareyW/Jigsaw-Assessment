@@ -1,6 +1,5 @@
-// This was my original call for fetching the JSON data, including await functions and
-//catches for errors
-
+// This was my original call for fetching the JSON data, including async await functions and
+// catches for errors
 // I was not able to implement this within the get.res in time and so favoured a simpler call
 // so that I could focus instead on testing
 

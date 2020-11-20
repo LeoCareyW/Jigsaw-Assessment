@@ -78,7 +78,7 @@ const getCategories = (data) => {
 
 const categoryArray = getCategories(data);
 
-
+//----------------------------------------------------------
 
 const timesCategoryAppears = (array, data) => {
   const categoryArray = []
@@ -89,6 +89,8 @@ const timesCategoryAppears = (array, data) => {
 }
 
 const arrayThis = timesCategoryAppears(categoryArray, data);
+
+//----------------------------------------------------------
 
 const summariseExpenses = (array) => {
   const finalArray = []
@@ -106,18 +108,17 @@ const summariseExpenses = (array) => {
   return(finalArray)
   }
 
-
 const objects = summariseExpenses(arrayThis);
 
-
-
-
+//----------------------------------------------------------
 
 const nameObject = (objects, categoryArray) => {
   for (let i = 0; i <= categoryArray.length - 1; i++) {
     console.log(`${categoryArray[i]} = TotalNumber: ${objects[i].totalNumber}, totalValue: ${objects[i].totalValue}, averageValue: ${objects[i].averageValue}`)
   }
 }
+
+//----------------------------------------------------------
 
 getCategories(data);
 timesCategoryAppears(categoryArray, data);

@@ -24,26 +24,51 @@ app.get('/cashflow', (req, res) => {
   res.send('Categories file')
 });
 
-// app.get('/expenses', (req, res) => {
-//   getTransactions = () => {
-//     if (error) {
-//       return res.send({ error })
-//     }
-//     res.send('transactions')
 
-
-app.get('/expenses', (req, res, next) => {
-  axios.get('http://54.154.227.172:3000/transactions')
-  .then((response) => {
-    console.log(response)
-  })
-  .catch((err) => {
-    console.log(err)
-  });
-  res.json(response)
+app.get('/insights', (req, res, next) => {
+  fetch('http://54.154.227.172:3000/transactions')
+    .then(res => res.json())
+    .then(data => {
+      res.send(data)
+    })
 })
 
-console.log(getTransactions())
+app.get('/insights/categories', (req, res, next) => {
+  fetch('http://54.154.227.172:3000/transactions')
+    .then(res => res.json())
+    .then(data => {
+
+      res.send(data)
+
+    })
+})
+
+app.get('/insights/cashflow', (req, res, next) => {
+  fetch('http://54.154.227.172:3000/transactions')
+    .then(res => res.json())
+    .then(data => {
+
+      res.send(data)
+
+    })
+})
+
+// const fetch = require('node-fetch');
+
+// const getTransactions = async () => {
+//   const response = await fetch('http://54.154.227.172:3000/transactions', {})
+//     if (response.status === 200) {
+//       const data = await response.json()
+//       console.log(data)
+//     } else {
+//     throw new Error('Unable to fetch transactions')
+//   }
+// }
+
+// module.exports = getTransactions
+
+
+
 
 
 //---------

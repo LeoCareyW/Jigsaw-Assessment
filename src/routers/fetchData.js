@@ -13,6 +13,3 @@ const getTransactions = async () => {
 module.exports = getTransactions
 
 
-
-
-

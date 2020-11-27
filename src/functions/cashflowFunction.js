@@ -1,61 +1,3 @@
-// const getDates = (data) => {
-//   const dateArray = [];
-//   data.forEach((expense) => {
-//     if (!dateArray.includes(expense.paymentDate)) {
-//       dateArray.push(expense.paymentDate)
-//     };
-//   });
-//   return(dateArray)
-// };
-
-// const timesDateAppears = (array, data) => {
-//   const dateArray = [];
-//   array.forEach((paymentDate) => {
-//     dateArray.push(data.filter(expense => expense.paymentDate === paymentDate))
-//   });
-//   return dateArray
-// };
-
-// const summariseSpendingByDays = (array) => {
-//   const finalArray = [];
-//   array.forEach((innerArray) => {
-//     let totalValue = 0
-//     innerArray.forEach((item) => {
-//       totalValue += item.amount
-//     })
-//       finalArray.push(item = {
-//         totalNumber: innerArray.length,
-//         totalValue: totalValue,
-//         averageValue: (totalValue / innerArray.length)
-//       });
-//     });
-//   return(finalArray)
-// };
-
-// const formatDates = (dates) => {
-//   const formattedDates = [];
-//   dates.forEach((date) => {
-//     formattedDates.push(`${date.slice(8, 10)}/${date.slice(5, 7)}/${date.slice(0, 4)}`)
-//   });
-//   return formattedDates
-// };
-
-// const nameDates = (objects, datesArray) => {
-//   const cashflowArray = [];
-//     for (let i = 0; i <= datesArray.length - 1; i++) {
-//       cashflowArray.push(`{ "${datesArray[i]}": { "totalNumber": ${objects[i].totalNumber}, "totalValue": ${objects[i].totalValue}, "averageValue": ${objects[i].averageValue} }`)
-//     };
-//   return cashflowArray;
-// };
-
-// module.exports = {
-//   getDates: getDates,
-//   timesDateAppears: timesDateAppears,
-//   summariseSpendingByDays: summariseSpendingByDays,
-//   formatDates: formatDates,
-//   nameDates: nameDates
-// }
-
 const getDates = (data) => {
   const dateArray = [];
   data.forEach((expense) => {
@@ -74,7 +16,6 @@ const timesDateAppears = (array, data) => {
   return dateArray
 };
 
-
 const summariseSpendingByDays = (array) => {
   const finalArray = [];
   array.forEach((innerArray) => {
@@ -91,7 +32,6 @@ const summariseSpendingByDays = (array) => {
   return(finalArray)
 };
 
-
 const formatDates = (dates) => {
   const formattedDates = [];
   dates.forEach((date) => {
@@ -99,7 +39,6 @@ const formatDates = (dates) => {
   });
   return formattedDates
 };
-
 
 let lowestCurrentMonth = 12
 let lowestCurrentDay = 30
@@ -114,7 +53,7 @@ const getEarliestDate = (dates) => {
   })
 }
 
-// this function is optional (add values into endDate in 'insertZeroValues') so that information will end
+// this function is optional (add values into the 'endDate' variables within 'insertZeroValues') so that information will end
 // with most recent transaction
 
 // let highestCurrentMonth = 1
@@ -147,7 +86,6 @@ const insertZeroValueDates = () => {
   return completeDatesArray
 }
 
-
 const reFormatDates = (dates) => {
   let existingDates = []
   dates.forEach((date) => {
@@ -157,6 +95,9 @@ const reFormatDates = (dates) => {
   return existingDates
 }
 
+
+// this function simply iterates through each array, returning existing values if date matches,
+// and zero values if no index is found
 
 const fillInData = (valueDatesArray, emptyValueArray, objects) => {
   const finalDataArray = []

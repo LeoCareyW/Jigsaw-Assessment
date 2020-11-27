@@ -163,7 +163,7 @@ const fillInData = (valueDatesArray, emptyValueArray, objects) => {
 
   emptyValueArray.forEach((item) => {
     let index = valueDatesArray.indexOf(item)
-    if (index > 0) {
+    if (index >= 0) {
       finalDataArray.push(`{ "${item}": { "totalNumber": ${objects[index].totalNumber}, "totalValue": ${objects[index].totalValue}, "averageValue": ${objects[index].averageValue} }`)
     } else {
       finalDataArray.push(`{ "${item}": { "totalNumber": 0, "totalValue": 0, "averageValue": 0 }`)

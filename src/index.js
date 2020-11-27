@@ -15,16 +15,22 @@ app.listen(3000, () => {
 
 // Three different server responses and urls
 
-app.get('/insights', (req, res, next) => {
-  fetch('http://54.154.227.172:3000/transactions')
+
+app.get('/insights', async (req, res, next) => {
+  try {
+  await fetch('http://54.154.227.172:3000/transactions')
     .then(res => res.json())
     .then(data => {
       res.send(data)
     })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
-app.get('/insights/categories', (req, res, next) => {
-  fetch('http://54.154.227.172:3000/transactions')
+app.get('/insights/categories', async (req, res, next) => {
+  try {
+  await fetch('http://54.154.227.172:3000/transactions')
     .then(res => res.json())
     .then(data => {
       const categoryArray = categoryFunctions.getCategories(data);
@@ -32,18 +38,28 @@ app.get('/insights/categories', (req, res, next) => {
       const objects = categoryFunctions.summariseExpenses(arrayOfAppearances);
       res.json(categoryFunctions.nameObject(objects, categoryArray));
     })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
-app.get('/insights/cashflow', (req, res, next) => {
-  fetch('http://54.154.227.172:3000/transactions')
+app.get('/insights/cashflow', async (req, res, next) => {
+  try {
+   await fetch('http://54.154.227.172:3000/transactions')
     .then(res => res.json())
     .then(data => {
       const dates = cashFlowFunctions.getDates(data);
       const arrayOfAppearances = cashFlowFunctions.timesDateAppears(dates, data);
       const objects = cashFlowFunctions.summariseSpendingByDays(arrayOfAppearances);
       const formattedDatesArray = cashFlowFunctions.formatDates(dates);
-      res.json(cashFlowFunctions.nameDates(objects, formattedDatesArray));
+      const startMonth = cashFlowFunctions.getEarliestDate(dates)
+      const completeDatesArray = cashFlowFunctions.insertZeroValueDates();
+      const shortDatesList = cashFlowFunctions.reFormatDates(dates)
+      res.json(cashFlowFunctions.fillInData(shortDatesList, completeDatesArray, objects));
     })
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 // handle errors

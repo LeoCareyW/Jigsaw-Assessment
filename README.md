@@ -1,4 +1,7 @@
 ------------------------
+## Important: The server running at  http://54.154.227.172:3000/transactions appears to now be offline,
+therefore the project cannot retreive that data.
+
 
 **Hi Team**,
 

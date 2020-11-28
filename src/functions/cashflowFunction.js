@@ -53,7 +53,7 @@ const getEarliestDate = (dates) => {
   })
 }
 
-// this function is optional (add values into the 'endDate' variables within 'insertZeroValues') so that information will end
+// this function is optional (add values into the 'endDate' in 'insertZeroValues') so that information will end
 // with most recent transaction
 
 // let highestCurrentMonth = 1
